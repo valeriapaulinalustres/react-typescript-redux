@@ -1,4 +1,4 @@
-import { Client } from "../../utils/interfaces";
+import { Client } from "../../utils/interfaces/clientInterface";
 
 type Props = {
     clients?: Client[]

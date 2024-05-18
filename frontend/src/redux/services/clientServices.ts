@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
-import { Client } from "../../utils/interfaces";
+import { Client } from "../../utils/interfaces/clientInterface";
 
 
 type GetClientsResponse = Client[];

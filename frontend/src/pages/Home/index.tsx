@@ -1,7 +1,12 @@
+import Filter from '../../components/Filter';
 import { useGetClientsQuery } from '../../redux/services/clientServices';
 import { useGetInboundCasesQuery } from '../../redux/services/inboundCaseServices';
+import DataTable from './DataTable';
+import Header from './Header';
 import styles from './Home.module.css'
 import SideMenu from './SideMenu';
+import StatusTabs from './StatusTabs';
+import Tabs from './Tabs';
 
 export  const Home = () : JSX.Element =>{
 
@@ -21,8 +26,18 @@ console.log('inboundCases', inboundCases, errorInboundCases)
 
     return (
         <div>
-            <SideMenu clients={clients}/>
-
+            <SideMenu clients={clients} />
+            <div>
+                <Header />
+                <Filter />
+            </div>
+            <Tabs />
+            <div>
+                <StatusTabs />
+                <div>
+                    {/* <DataTable inboundCases={inboundCases} /> */}
+                </div>
+            </div>
         </div>
     )
 }
