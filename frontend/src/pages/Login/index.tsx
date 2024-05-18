@@ -3,11 +3,14 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux/hooks";
 import { setUser } from "../../redux/features/user/userSlice";
 import { useEffect, useState } from "react";
 import { useLoginMutation } from "../../redux/services/loginServices";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { isAtLeastSixCharacters, isValidEmail } from "../../utils/validations";
 
 export const Login = (): JSX.Element => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMail, setErrorMail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
 
   const [triggerLogin, resultLogin] = useLoginMutation();
 
@@ -18,7 +21,7 @@ export const Login = (): JSX.Element => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (resultLogin.data) {
+    if (resultLogin.isSuccess && resultLogin.data) {
       const { email, first_name, last_name, token } = resultLogin.data;
 
       dispatch(
@@ -31,44 +34,76 @@ export const Login = (): JSX.Element => {
           },
         })
       );
-      navigate('/home');
+      navigate("/home");
+    } else if (resultLogin.isError) {
+      setErrorPassword('No puede iniciar sesión con las credenciales proporcionadas')
     }
-
-
   }, [resultLogin, dispatch, navigate]);
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     try {
-      const request = {
-        email,
-        password,
-      };
+      const isValidVariableEmail = isValidEmail(email);
+      const isCorrectPassword = isAtLeastSixCharacters(password);
 
-      console.log("request", request);
-      triggerLogin(request);
+      if (isValidVariableEmail && isCorrectPassword) {
+        const request = {
+          email,
+          password,
+        };
+
+        console.log("request", request);
+        triggerLogin(request);
+      }
+
+      if (!isValidVariableEmail) {
+        setErrorMail("Invalid email");
+      } else {
+        setErrorMail("");
+      }
+      if (!isCorrectPassword) {
+        setErrorPassword("Password must be at least 6 characters");
+      } else {
+        setErrorPassword("");
+      }
     } catch (error) {
       console.log("error", error);
     }
   };
   console.log("resultLogin", resultLogin);
 
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+    if (errorMail) {
+      setErrorMail("");
+    }
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+    if (errorPassword) {
+      setErrorPassword("");
+    }
+  };
+
   return (
     <div>
       <div>{userFromRedux.token}</div>
       <form onSubmit={handleSubmit}>
         <input
-          type="mail"
-          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+          onChange={handleEmailChange}
           value={email}
         />
         <p>reactdev@iniceptia.ai</p>
+        <p>{errorMail}</p>
         <input
           type="password"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handlePasswordChange}
           value={password}
         />
         <p>4eSBbHqiCTPdBCTj</p>
+        <p>{errorPassword}</p>
         <button type="submit">Login</button>
       </form>
     </div>
