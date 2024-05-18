@@ -36,7 +36,9 @@ export const Login = (): JSX.Element => {
       );
       navigate("/home");
     } else if (resultLogin.isError) {
-      setErrorPassword('No puede iniciar sesión con las credenciales proporcionadas')
+      setErrorPassword(
+        "No puede iniciar sesión con las credenciales proporcionadas"
+      );
     }
   }, [resultLogin, dispatch, navigate]);
 
@@ -52,7 +54,6 @@ export const Login = (): JSX.Element => {
           password,
         };
 
-        console.log("request", request);
         triggerLogin(request);
       }
 
@@ -70,7 +71,6 @@ export const Login = (): JSX.Element => {
       console.log("error", error);
     }
   };
-  console.log("resultLogin", resultLogin);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -90,11 +90,7 @@ export const Login = (): JSX.Element => {
     <div>
       <div>{userFromRedux.token}</div>
       <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          onChange={handleEmailChange}
-          value={email}
-        />
+        <input type="email" onChange={handleEmailChange} value={email} />
         <p>reactdev@iniceptia.ai</p>
         <p>{errorMail}</p>
         <input

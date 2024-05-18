@@ -19,8 +19,6 @@ interface LoginResponse {
   ];
   is_active: boolean;
   token: string;
-
-  // Otros posibles campos de la respuesta
 }
 
 export const loginApi = createApi({
