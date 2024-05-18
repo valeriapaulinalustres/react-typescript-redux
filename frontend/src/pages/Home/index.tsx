@@ -1,6 +1,7 @@
 import { useGetClientsQuery } from '../../redux/services/clientServices';
 import { useGetInboundCasesQuery } from '../../redux/services/inboundCaseServices';
 import styles from './Home.module.css'
+import SideMenu from './SideMenu';
 
 export  const Home = () : JSX.Element =>{
 
@@ -19,7 +20,10 @@ console.log('clients', clients)
 console.log('inboundCases', inboundCases, errorInboundCases)
 
     return (
-        <div>Hola Inceptia</div>
+        <div>
+            <SideMenu clients={clients}/>
+
+        </div>
     )
 }
 

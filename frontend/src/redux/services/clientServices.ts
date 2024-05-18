@@ -1,32 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
+import { Client } from "../../utils/interfaces";
 
 
-// Structure of the user groups
-interface Group {
-  id: number;
-  name: string;
-}
-
-// Structure of the users within clients
-interface User {
-  id: number;
-  email: string;
-  first_name: string;
-  last_name: string;
-  profile_image: string | null;
-  groups: Group[];
-  is_active: boolean;
-}
-
-// Structure of the clients
-interface Client {
-  id: number;
-  name: string;
-  users: User[];
-}
-
-// The response is an array of clients
 type GetClientsResponse = Client[];
 
 export const clientApi = createApi({

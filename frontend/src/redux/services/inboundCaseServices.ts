@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { RootState } from "../store"; // Asegúrate de que esto apunte al archivo donde defines el RootState
+import { RootState } from "../store"; 
 
 // Define the structure of the client within cases
 interface Client {
