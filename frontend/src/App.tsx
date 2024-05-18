@@ -12,7 +12,8 @@ export const App = () : JSX.Element =>{
         <BrowserRouter>
           <div className="App container">        
             <Routes>
-              <Route path="/" element={<Login />} />            
+              <Route path="/" element={<Login />} />   
+              <Route path="/home" element={<Home />} />            
             </Routes>      
           </div>
         </BrowserRouter>
