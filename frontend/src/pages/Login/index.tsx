@@ -87,21 +87,22 @@ export const Login = (): JSX.Element => {
   };
 
   return (
-    <div>
-      <div>{userFromRedux.token}</div>
+    <div className={styles.container}>
+       <div className={styles.loginCard}>
       <form onSubmit={handleSubmit}>
         <input type="email" onChange={handleEmailChange} value={email} />
-        <p>reactdev@iniceptia.ai</p>
-        <p>{errorMail}</p>
+        <p className={styles.example}>reactdev@iniceptia.ai</p>
+        <p className={styles.error}>{errorMail}</p>
         <input
           type="password"
           onChange={handlePasswordChange}
           value={password}
         />
-        <p>4eSBbHqiCTPdBCTj</p>
-        <p>{errorPassword}</p>
+        <p className={styles.example}>4eSBbHqiCTPdBCTj</p>
+        <p className={styles.error}>{errorPassword}</p>
         <button type="submit">Login</button>
       </form>
+      </div>
     </div>
   );
 };
