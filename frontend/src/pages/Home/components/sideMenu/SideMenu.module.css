@@ -1,20 +1,28 @@
 .container{
-    width: 10%;
-height: 100%;
-background-color: rgb(150, 214, 232);
+    width: 10vw;
+height: 100vh;
+background-color: var(--main);
 
 }
 
 .clients{
     width: 100%;
     height: 90%;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
+}
+
+.title{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .client{
     width: 100%;
-    height: 30px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;

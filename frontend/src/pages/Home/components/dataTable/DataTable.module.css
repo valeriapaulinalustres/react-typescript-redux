@@ -1,0 +1,72 @@
+.container {
+  width: 100%;
+  box-shadow: inset 0px 5px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+.tableWrapper {
+  max-height: 500px;
+  overflow-y: auto;
+  scrollbar-color: var(--disabled-text) white;
+  scrollbar-width: thin;
+  overflow-x: auto; 
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: var(--important);
+  color: white;
+}
+
+th, td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: center; 
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+td {
+  color: #333;
+}
+
+td:nth-child(1), td:nth-child(4), td:nth-child(5), td:nth-child(6) {
+  color: var(--important);
+}
+
+td:nth-child(8) {
+  white-space: nowrap;
+  color: var(--main-text);
+  background-color: var(--main);
+}
+
+td:nth-child(8):hover {
+  background-color: var(--darker-main);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  color: var(--disabled-text);
+  margin-right: 10px;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+td.clientNotFound {
+  color: var(--important);
+  background-color: var(--important-lighter);
+}

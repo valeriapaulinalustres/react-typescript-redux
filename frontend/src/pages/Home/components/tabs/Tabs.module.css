@@ -5,6 +5,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    box-shadow: inset 0px 5px 10px -5px rgba(0, 0, 0, 0.3);
 }
 
 .screens{
@@ -20,4 +21,16 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+.inputContainer{
+    margin: 0 10px;
+}
+
+.input{
+    border: 1px solid var(--disabled-text);
+}
+
+.active{
+    color: var(--active-text);
 }

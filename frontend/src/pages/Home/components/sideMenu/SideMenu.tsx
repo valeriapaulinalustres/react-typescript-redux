@@ -9,12 +9,14 @@ type Props = {
 export const SideMenu = ({ clients, handleClickClient }: Props): JSX.Element => {
   return (
     <div className={styles.container}>
-      <h2>Cliente</h2>
+      <div className={styles.title}>
+      <h2>CLIENTE</h2>
+      </div>
       <main className={styles.clients}>
         {clients ? (
           clients.map((client) => (
             <div key={client.id} className={styles.client} onClick={() => handleClickClient(client.id)}>
-              <p>{client.name}</p>
+              <h5>{client.name}</h5>
             </div>
           ))
         ) : (

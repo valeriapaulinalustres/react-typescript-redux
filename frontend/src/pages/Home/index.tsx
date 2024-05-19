@@ -120,7 +120,7 @@ export const Home = (): JSX.Element => {
           setSelectedTab={setSelectedTab}
         />
         <div className={styles.tableContainer}>
-          <StatusTabs setStatus={setStatus} />
+          <StatusTabs setStatus={setStatus} status={status}/>
           {selectedClient !== null &&
             !isLoadingInboundCases &&
             (selectedTab === "Detalle" ? (

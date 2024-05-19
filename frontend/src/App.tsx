@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import {store} from '../src/redux/store'
 import { Provider } from "react-redux";
 import Login from "./pages/Login";
+import './App.css'
 
 
 export const App = () : JSX.Element =>{

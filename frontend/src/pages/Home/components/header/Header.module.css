@@ -5,4 +5,25 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    box-shadow: inset 0px 5px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+.inputContainer{
+    border: 1px solid var(--disabled-text);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 100px;
+}
+
+.input{
+    width: 180px;
+    padding: 5px;
+    border: none;
+}
+
+.icon{
+    width: 25px;
+    height: 25px;
+    color: var(--disabled-text);
 }

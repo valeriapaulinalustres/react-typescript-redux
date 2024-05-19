@@ -1,4 +1,5 @@
 import styles from "./Header.module.css";
+import { IoIosSearch } from "react-icons/io";
 
 type Props = {
     setNumberToFilterClient: React.Dispatch<React.SetStateAction<number | null>>;
@@ -14,13 +15,17 @@ const Header = ({ setNumberToFilterClient, numberToFilterClient }: Props): JSX.E
 
     return (
         <div className={styles.container}>
-            <p>Reportes</p>
+            <h1>REPORTES</h1>
+            <div className={styles.inputContainer}>
             <input
                 type="number"
                 placeholder="ID Caso, ID Cliente o Tel"
                 value={numberToFilterClient !== null ? numberToFilterClient.toString() : ""}
                 onChange={handleInputChange}
+                className={styles.input}
             />
+            <IoIosSearch className={styles.icon}/>
+            </div>
         </div>
     );
 };
