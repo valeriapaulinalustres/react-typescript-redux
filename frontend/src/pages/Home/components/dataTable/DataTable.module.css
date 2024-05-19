@@ -70,3 +70,8 @@ td.clientNotFound {
   color: var(--important);
   background-color: var(--important-lighter);
 }
+
+td.clientNotFound:hover {
+  color: var(--important-lighter);
+  background-color: var(--important);
+}

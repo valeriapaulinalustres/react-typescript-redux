@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useLoginMutation } from "../../redux/services/loginServices";
 import { useNavigate } from "react-router-dom";
 import { isAtLeastSixCharacters, isValidEmail } from "../../utils/validations";
+import Button from "../../components/Button";
 
 export const Login = (): JSX.Element => {
   const [email, setEmail] = useState("");
@@ -100,7 +101,7 @@ export const Login = (): JSX.Element => {
         />
         <p className={styles.example}>4eSBbHqiCTPdBCTj</p>
         <p className={styles.error}>{errorPassword}</p>
-        <button type="submit">Login</button>
+        <Button buttonType="submit" title="Login" />
       </form>
       </div>
     </div>
