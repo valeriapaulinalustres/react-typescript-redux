@@ -1,6 +1,27 @@
 import styles from './Tabs.module.css'
 
-const Tabs = (): JSX.Element => {
+
+type DateSelected = {
+    from: string;
+    to: string;
+};
+
+type Props = {
+    selectedDate: DateSelected;
+    setSelectedDate: (date: DateSelected) => void;
+};
+
+const Tabs = ({selectedDate, setSelectedDate}:Props): JSX.Element => {
+
+    const handleFromDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSelectedDate({ ...selectedDate, from: e.target.value });
+    };
+
+    const handleToDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSelectedDate({ ...selectedDate, to: e.target.value });
+    };
+
+
     return (
         <div className={styles.container}>
             <div className={styles.screens}>
@@ -12,8 +33,8 @@ const Tabs = (): JSX.Element => {
                 <p>MES</p>
                 <p>SEMANA</p>
                 <p>DÍA</p>
-                <input type="date"/>
-                <input type="date"/>
+                <input type="date" value={selectedDate.from} onChange={handleFromDateChange} />
+                <input type="date" value={selectedDate.to} onChange={handleToDateChange} />
             </div>
         </div>
     );
