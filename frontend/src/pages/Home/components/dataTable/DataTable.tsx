@@ -1,13 +1,10 @@
-//import { InboundCase } from '../../utils/interfaces/inboundCaseInterfase'; // Asegúrate de tener esta interfaz definida
+import { InboundCase } from "../../../../utils/interfaces/inboundCaseInterfase";
 
-
-
-// type Props = {
-//     inboundCases: InboundCase[] | undefined;
-// }
-
+type Props = {
+  inboundCases: InboundCase[];
+};
 const DataTable = ( 
-  // { inboundCases }: Props
+   { inboundCases }: Props
 )
   : JSX.Element => {
     return (
