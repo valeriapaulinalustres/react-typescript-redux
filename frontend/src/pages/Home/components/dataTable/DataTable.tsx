@@ -9,11 +9,11 @@ const DataTable = (
   : JSX.Element => {
     return (
         <div>
-            {/* {inboundCases ? (
+            {inboundCases ? (
                 <table>
                     <thead>
                         <tr>
-                            <th>Gestión</th>
+                            <th>Gestionado</th>
                             <th>ID Caso</th>
                             <th>Teléfono</th>
                             <th>DNI</th>
@@ -40,7 +40,7 @@ const DataTable = (
                 </table>
             ) : (
                 <div>No data available</div>
-            )} */}
+            )}
         </div>
     );
 }
