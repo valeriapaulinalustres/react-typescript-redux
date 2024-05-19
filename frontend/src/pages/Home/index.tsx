@@ -19,6 +19,7 @@ export const Home = (): JSX.Element => {
   const { data: clients, error: errorClients, isLoading: isLoadingClients } = useGetClientsQuery();
   const [selectedClient, setSelectedClient] = useState<number | null>(null);
   const [filteredCases, setFilteredCases] = useState<InboundCase[]>([]);
+  const [status, setStatus] = useState<string>('TODOS')
 
 
   const earliestDate = "2000-01-01";
@@ -42,9 +43,16 @@ export const Home = (): JSX.Element => {
 
   useEffect(() => {
     if (inboundCases?.results) {
-      setFilteredCases(inboundCases.results);
+      if (status === "TODOS") {
+        setFilteredCases(inboundCases.results);
+      } else {
+        const filtered = inboundCases.results.filter(
+          (el) => el.case_result.name.toLowerCase() === status.toLowerCase()
+        );
+        setFilteredCases(filtered);
+      }
     }
-  }, [inboundCases]);
+  }, [inboundCases, status]);
 
   if (isLoadingClients) return <div>Loading...</div>;
   if (errorClients) return <div>Error</div>;
@@ -54,6 +62,7 @@ export const Home = (): JSX.Element => {
 
   console.log('date', selectedDate)
   console.log('filtered cases', filteredCases)
+  console.log('status', status)
 
   return (
     <div className={styles.container}>
@@ -62,7 +71,7 @@ export const Home = (): JSX.Element => {
         <Header />
         <Tabs selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>
         <div className={styles.tableContainer}>
-          <StatusTabs />
+          <StatusTabs setStatus={setStatus}/>
           {selectedClient !== null && !isLoadingInboundCases && (
             <DataTable inboundCases={filteredCases} />
           )}

@@ -1,18 +1,25 @@
 import styles from './StatusBar.module.css'
 
-const StatusTabs = (): JSX.Element => {
+
+type Props = {
+    setStatus: (status:string) => void;
+}
+
+const StatusTabs = ({setStatus}:Props): JSX.Element => {
+
+const menuItems = [
+    "TODOS", "TRANSFERIDOS", "NIEGA CONFIRMACIÓN DATOS", "CLIENTE NO ENCONTRADO EN DB", "LLAMANDO", "CORTÓ CLIENTE", "MAIL ENVIADO", "INDEFINIDO", "NO ENCONTRADO EN DB"
+]
+
+
+
     return (
         <div className={styles.container}>
-            <p>TODOS</p>
-            <p>TRANSFERIDOS</p>
-            <p>NIEGA CONFIRMACIÓN DATOS</p>
-            <p>CLIENTE NO ENCONTRADO EN DB</p>
-            <p>LLAMANDO</p>
-            <p>CORTÓ CLIENTE</p>
-            <p>MAIL ENVIADO</p>
-            <p>INDEFINIDO</p>
-            <p>NO ENCONTRADO EN DB</p>
-
+            {menuItems.map((item, index)=>{
+                return(
+                    <p key={index} onClick={()=>setStatus(item)}>{item}</p>
+                )
+            })}
         </div>
     );
 }
