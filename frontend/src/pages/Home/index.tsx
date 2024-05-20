@@ -1,7 +1,7 @@
 import { useGetClientsQuery } from "../../redux/services/clientServices";
 import { useGetInboundCasesQuery } from "../../redux/services/inboundCaseServices";
 import { skipToken } from "@reduxjs/toolkit/query";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import DataTable from "./components/dataTable/DataTable";
 import Header from "./components/header/Header";
 import styles from "./Home.module.css";
@@ -9,7 +9,8 @@ import SideMenu from "./components/sideMenu/SideMenu";
 import StatusTabs from "./components/statusBar/StatusTabs";
 import Tabs from "./components/tabs/Tabs";
 import { InboundCase } from "../../utils/interfaces/inboundCaseInterfase";
-import { Client } from "../../utils/interfaces/clientInterface";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux/hooks";
+import { setClients } from "../../redux/features/clients/clientsSlice";
 
 type DateSelected = {
   from: string;
@@ -21,10 +22,7 @@ export const Home = (): JSX.Element => {
   const [filteredCases, setFilteredCases] = useState<InboundCase[]>([]);
   const [status, setStatus] = useState<string>("TODOS");
   const [selectedTab, setSelectedTab] = useState<string>("Detalle");
-  const [numberToFilterClient, setNumberToFilterClient] = useState<
-    number | null
-  >(null);
-  const [clients, setClients] = useState<Client[]>([]);
+  const [numberToFilterClient, setNumberToFilterClient] = useState<number | null>(null);
 
   const earliestDate = "2000-01-01";
   const today = new Date().toISOString().split("T")[0];
@@ -52,6 +50,9 @@ export const Home = (): JSX.Element => {
       : skipToken
   );
 
+  const dispatch = useAppDispatch();
+  const clients = useAppSelector((state) => state.clientsReducer.clients);
+
   const handleClickClient = (id: number) => {
     setSelectedClient(id);
   };
@@ -62,15 +63,15 @@ export const Home = (): JSX.Element => {
       if (numberToFilterClient !== null) {
         const clientMatch = data.find((el) => el.id === numberToFilterClient);
         if (clientMatch) {
-          setClients([clientMatch]);
+          dispatch(setClients([clientMatch]));
         } else {
-          setClients([]);
+          dispatch(setClients([]));
         }
       } else {
-        setClients(data);
+        dispatch(setClients(data));
       }
     }
-  }, [data, numberToFilterClient, selectedClient]);
+  }, [data, numberToFilterClient, selectedClient, dispatch]);
 
   useEffect(() => {
     if (inboundCases?.results) {

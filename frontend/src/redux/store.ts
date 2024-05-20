@@ -4,11 +4,12 @@ import { loginApi } from './services/loginServices'
 import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { clientApi } from './services/clientServices';
 import { inboundCaseApi } from './services/inboundCaseServices';
-
+import clientsReducer from './features/clients/clientsSlice'
 
 export const store = configureStore({
   reducer: {
    userReducer,
+   clientsReducer,
    [loginApi.reducerPath]: loginApi.reducer,
    [clientApi.reducerPath]: clientApi.reducer,
    [inboundCaseApi.reducerPath]: inboundCaseApi.reducer,
