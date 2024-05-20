@@ -8,9 +8,9 @@ import styles from "./Home.module.css";
 import SideMenu from "./components/sideMenu/SideMenu";
 import StatusTabs from "./components/statusBar/StatusTabs";
 import Tabs from "./components/tabs/Tabs";
-import { InboundCase } from "../../utils/interfaces/inboundCaseInterfase";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux/hooks";
 import { setClients } from "../../redux/features/clients/clientsSlice";
+import { setFilteredCases } from "../../redux/features/inboundCases/inboundCasesSlice";
 
 type DateSelected = {
   from: string;
@@ -19,7 +19,6 @@ type DateSelected = {
 
 export const Home = (): JSX.Element => {
   const [selectedClient, setSelectedClient] = useState<number | null>(null);
-  const [filteredCases, setFilteredCases] = useState<InboundCase[]>([]);
   const [status, setStatus] = useState<string>("TODOS");
   const [selectedTab, setSelectedTab] = useState<string>("Detalle");
   const [numberToFilterClient, setNumberToFilterClient] = useState<number | null>(null);
@@ -52,6 +51,7 @@ export const Home = (): JSX.Element => {
 
   const dispatch = useAppDispatch();
   const clients = useAppSelector((state) => state.clientsReducer.clients);
+  const filteredCases = useAppSelector((state) => state.inboundCasesReducer.filteredCases);
 
   const handleClickClient = (id: number) => {
     setSelectedClient(id);
@@ -91,10 +91,9 @@ export const Home = (): JSX.Element => {
           statusRegex.test(el.case_result.name)
         );
       }
-
-      setFilteredCases(filtered);
+      dispatch(setFilteredCases(filtered));
     }
-  }, [inboundCases, status, numberToFilterClient]);
+  }, [inboundCases, status, numberToFilterClient, dispatch]);
 
   if (isLoadingClients) return <div>Loading...</div>;
   if (errorClients) return <div>Error</div>;
