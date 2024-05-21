@@ -1,10 +1,8 @@
-// Structure of the user groups
 export interface Group {
     id: number;
     name: string;
 }
 
-// Structure of the users within clients
 export interface User {
     id: number;
     email: string;
@@ -15,7 +13,6 @@ export interface User {
     is_active: boolean;
 }
 
-// Structure of the clients
 export interface Client {
     id: number;
     name: string;

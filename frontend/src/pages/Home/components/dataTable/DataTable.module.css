@@ -1,14 +1,17 @@
 .container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   box-shadow: inset 0px 5px 10px -5px rgba(0, 0, 0, 0.3);
+  flex: 1;
+  overflow: hidden;
 }
 
 .tableWrapper {
-  max-height: 500px;
-  overflow-y: auto;
+  flex: 1;
+  overflow: auto;
   scrollbar-color: var(--disabled-text) white;
   scrollbar-width: thin;
-  overflow-x: auto; 
 }
 
 table {

@@ -1,8 +1,7 @@
 .container{
     width: 10vw;
-height: 100vh;
-background-color: var(--main);
-
+    height: 100vh;
+    background-color: var(--main);
 }
 
 .clients{

@@ -1,42 +1,38 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family:'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
   font-size: 12px;
 }
 
-:root{
-
-  /*Colors*/
-
+:root {
   --main: #eff3f9;
   --darker-main: #e2eaf7;
   --main-text: #6babe4;
---active-text: #7a7a7a;
---disabled-text: #bebebe;
---secondary: #eff3f9;
---important: #e20616;
---important-lighter: #fadde6;
---important-medium: #dd9a9e;
+  --active-text: #7a7a7a;
+  --disabled-text: #bebebe;
+  --secondary: #eff3f9;
+  --important: #e20616;
+  --important-lighter: #fadde6;
+  --important-medium: #dd9a9e;
 }
 
-h1{
+h1 {
   color: var(--active-text);
   font-size: 18px;
   font-weight: 400;
   margin: 0 10px;
 }
 
-h2{
+h2 {
   color: var(--active-text);
   font-size: 16px;
   font-weight: 400;
-
 }
 
-h3{
+h3 {
   color: var(--disabled-text);
   font-size: 14px;
   font-weight: 400;
@@ -44,7 +40,7 @@ h3{
   cursor: pointer;
 }
 
-h4{
+h4 {
   color: var(--disabled-text);
   font-size: 12px;
   font-weight: 400;
@@ -52,34 +48,34 @@ h4{
   cursor: pointer;
 }
 
-h5{
+h5 {
   color: var(--active-text);
   font-size: 14px;
   font-weight: 600;
   margin: 0 10px;
 }
 
-h6{
+h6 {
   color: var(--active-text);
   font-size: 10px;
   font-weight: 200;
 }
 
-p{
+p {
   margin: 0 10px;
 }
 
-input{
+input {
   color: var(--active-text);
 }
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 input[type="number"] {
-    -moz-appearance: textfield;
-    appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
 }

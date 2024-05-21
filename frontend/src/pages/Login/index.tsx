@@ -1,5 +1,5 @@
 import styles from "./Login.module.css";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux/hooks";
+import { useAppDispatch } from "../../hooks/redux/hooks";
 import { setUser } from "../../redux/features/user/userSlice";
 import { useEffect, useState } from "react";
 import { useLoginMutation } from "../../redux/services/loginServices";
@@ -16,8 +16,6 @@ export const Login = (): JSX.Element => {
   const [triggerLogin, resultLogin] = useLoginMutation();
 
   const dispatch = useAppDispatch();
-
-  const userFromRedux = useAppSelector((state) => state.userReducer.value);
 
   const navigate = useNavigate();
 
@@ -89,20 +87,20 @@ export const Login = (): JSX.Element => {
 
   return (
     <div className={styles.container}>
-       <div className={styles.loginCard}>
-      <form onSubmit={handleSubmit}>
-        <input type="email" onChange={handleEmailChange} value={email} />
-        <p className={styles.example}>reactdev@iniceptia.ai</p>
-        <p className={styles.error}>{errorMail}</p>
-        <input
-          type="password"
-          onChange={handlePasswordChange}
-          value={password}
-        />
-        <p className={styles.example}>4eSBbHqiCTPdBCTj</p>
-        <p className={styles.error}>{errorPassword}</p>
-        <Button buttonType="submit" title="Login" />
-      </form>
+      <div className={styles.loginCard}>
+        <form onSubmit={handleSubmit}>
+          <input type="email" onChange={handleEmailChange} value={email} />
+          <p className={styles.example}>reactdev@iniceptia.ai</p>
+          <p className={styles.error}>{errorMail}</p>
+          <input
+            type="password"
+            onChange={handlePasswordChange}
+            value={password}
+          />
+          <p className={styles.example}>4eSBbHqiCTPdBCTj</p>
+          <p className={styles.error}>{errorPassword}</p>
+          <Button buttonType="submit" title="Login" />
+        </form>
       </div>
     </div>
   );

@@ -1,4 +1,20 @@
-Ejercicio 2:
+# Ejercicio 1: Características:
+
+ * Actualizado a React JS versión "18.3.1",
+ * Typescript
+ * Estado global con Redux,
+ * RTK (Redux Tool Kit) para llamados a los endpoints,
+ * React Icons para los íconos,
+ * Se agrega diseño y desarrollo de pantalla de login, la cual contiene manejo de errores,
+ * Incluye selección de cliente, visualización de resultados y filtro por fecha,
+ * Se agregan además el filtro de ID Caso, ID Cliente o TEL (extremo superior derecho),
+ * También se agrega el filtro de Estado (click en "Todos, Transferido, Niega confirmación de datos, etc"),
+ * Se agrega el cambio de vistas entre Detalle y Dashboards (click en Detalles y Dashboards),
+ * Posee repositorio en Git,
+ * Posee deploy en Vercel 
+
+
+# Ejercicio 2: Respuestas
 
 2.1) ¿Cómo implementarías las acciones del frontend utilizando redux? (por ejemplo autenticación, solicitud de clientes activos para el usuario y solicitud de casos por cliente)
 

@@ -9,7 +9,7 @@ type Props = {
 const Header = ({ setNumberToFilterClient, numberToFilterClient }: Props): JSX.Element => {
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
-        const numberValue = value !== "" ? parseInt(value, 10) : null; 
+        const numberValue = value !== "" ? parseInt(value, 10) : null;
         setNumberToFilterClient(numberValue);
     };
 
@@ -17,14 +17,14 @@ const Header = ({ setNumberToFilterClient, numberToFilterClient }: Props): JSX.E
         <div className={styles.container}>
             <h1>REPORTES</h1>
             <div className={styles.inputContainer}>
-            <input
-                type="number"
-                placeholder="ID Caso, ID Cliente o Tel"
-                value={numberToFilterClient !== null ? numberToFilterClient.toString() : ""}
-                onChange={handleInputChange}
-                className={styles.input}
-            />
-            <IoIosSearch className={styles.icon}/>
+                <input
+                    type="number"
+                    placeholder="ID Caso, ID Cliente o Tel"
+                    value={numberToFilterClient !== null ? numberToFilterClient.toString() : ""}
+                    onChange={handleInputChange}
+                    className={styles.input}
+                />
+                <IoIosSearch className={styles.icon} />
             </div>
         </div>
     );

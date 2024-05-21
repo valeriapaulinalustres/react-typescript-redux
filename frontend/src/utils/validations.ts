@@ -1,5 +1,3 @@
-// validations.ts
-
 export const isValidEmail = (emailInput: string): boolean => {
     const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     return regex.test(emailInput);

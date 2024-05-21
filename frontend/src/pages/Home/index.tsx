@@ -6,7 +6,7 @@ import DataTable from "./components/dataTable/DataTable";
 import Header from "./components/header/Header";
 import styles from "./Home.module.css";
 import SideMenu from "./components/sideMenu/SideMenu";
-import StatusTabs from "./components/statusBar/StatusTabs";
+import StatusTabs from "./components/statusTabs/StatusTabs";
 import Tabs from "./components/tabs/Tabs";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux/hooks";
 import { setClients } from "../../redux/features/clients/clientsSlice";
@@ -23,6 +23,7 @@ export const Home = (): JSX.Element => {
   const [selectedTab, setSelectedTab] = useState<string>("Detalle");
   const [numberToFilterClient, setNumberToFilterClient] = useState<number | null>(null);
 
+  //Defines the initial state of the calendar
   const earliestDate = "2000-01-01";
   const today = new Date().toISOString().split("T")[0];
   const [selectedDate, setSelectedDate] = useState<DateSelected>({
@@ -30,36 +31,41 @@ export const Home = (): JSX.Element => {
     to: today,
   });
 
+  //Gets Inbound Cases API data
   const {
     data,
     error: errorClients,
     isLoading: isLoadingClients,
   } = useGetClientsQuery();
-  const {
-    data: inboundCases,
-    error: errorInboundCases,
-    isLoading: isLoadingInboundCases,
-  } = useGetInboundCasesQuery(
-    selectedClient !== null
-      ? {
-          bot: selectedClient,
-          local_updated__date__gte: selectedDate.from,
-          local_updated__date__lte: selectedDate.to,
-        }
-      : skipToken
-  );
+  const { data: inboundCases, isLoading: isLoadingInboundCases } =
+    useGetInboundCasesQuery(
+      selectedClient !== null
+        ? {
+            bot: selectedClient,
+            local_updated__date__gte: selectedDate.from,
+            local_updated__date__lte: selectedDate.to,
+          }
+        : skipToken
+    );
 
   const dispatch = useAppDispatch();
+  
+    //Receives global state from redux  
   const clients = useAppSelector((state) => state.clientsReducer.clients);
-  const filteredCases = useAppSelector((state) => state.inboundCasesReducer.filteredCases);
+  const filteredCases = useAppSelector(
+    (state) => state.inboundCasesReducer.filteredCases
+  );
 
   const handleClickClient = (id: number) => {
     setSelectedClient(id);
   };
 
+  //Store Clients information in redux global state
   useEffect(() => {
     if (data) {
-        if (selectedClient) {return}
+      if (selectedClient) {
+        return;
+      }
       if (numberToFilterClient !== null) {
         const clientMatch = data.find((el) => el.id === numberToFilterClient);
         if (clientMatch) {
@@ -73,6 +79,8 @@ export const Home = (): JSX.Element => {
     }
   }, [data, numberToFilterClient, selectedClient, dispatch]);
 
+  
+  //Store inbound cases information in redux global state
   useEffect(() => {
     if (inboundCases?.results) {
       let filtered = inboundCases.results;
@@ -98,13 +106,6 @@ export const Home = (): JSX.Element => {
   if (isLoadingClients) return <div>Loading...</div>;
   if (errorClients) return <div>Error</div>;
 
-  console.log("clients", clients);
-  console.log("inboundCases", inboundCases, errorInboundCases);
-  console.log("date", selectedDate);
-  console.log("filtered cases", filteredCases);
-  console.log("status", status);
-  console.log("numberToFilterClient", numberToFilterClient);
-
   return (
     <div className={styles.container}>
       <SideMenu clients={clients} handleClickClient={handleClickClient} />
@@ -120,7 +121,7 @@ export const Home = (): JSX.Element => {
           setSelectedTab={setSelectedTab}
         />
         <div className={styles.tableContainer}>
-          <StatusTabs setStatus={setStatus} status={status}/>
+          <StatusTabs setStatus={setStatus} status={status} />
           {selectedClient !== null &&
             !isLoadingInboundCases &&
             (selectedTab === "Detalle" ? (
