@@ -11,7 +11,7 @@
  * También se agrega el filtro de Estado (click en "Todos, Transferido, Niega confirmación de datos, etc"),
  * Se agrega el cambio de vistas entre Detalle y Dashboards (click en Detalles y Dashboards),
  * Posee repositorio en Git,
- * Posee deploy en Vercel 
+ * Docker.
 
 
 # Ejercicio 2: Respuestas
